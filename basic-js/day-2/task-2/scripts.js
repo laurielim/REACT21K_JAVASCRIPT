@@ -18,9 +18,7 @@ const one = "yksi",
     six = "kuusi",
     seven = "seitsemän",
     eight = "kahdeksan",
-    nine = "yhdeksän",
-    toista = "toista",
-    kymmentä ="kymmentä";
+    nine = "yhdeksän";
 
 // Split digits
 let firstDigit = randomNum % 10,
@@ -92,8 +90,10 @@ if (randomNum > 10) {
     }
 }
 
+// Show user the number
 console.log(randomNum)
 
+// Show user the text form in Finnish
 if (randomNum === 0) {
     console.log("nolla");
 } else if (randomNum === 10) {
