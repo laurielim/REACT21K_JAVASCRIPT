@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Military Status Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Military Status Calculator</h1>
+    <p>Make a program that asks age of the user. If the age is less than 18 the text “too young” is printed. If the age is less than 27 the text “Right age for military service” is printed. If the age is less than 41 the text “You are in reserve” is printed.  If the age is less than 55 the text “You are in backup reserve” is printed. All other cases “too aged” is printed.
+    </p>
+    <form>
+        <div>
+            <label for="age">What's your age?</label>
+            <input type="number" id="age">
+        </div>
+    </form>
+    <button onclick="statuscalc()">Submit</button>
+    <p>Your military status is: <span id="answer"></span></p>
+
+    <script src="main.js"></script>
+</body>
+</html>
