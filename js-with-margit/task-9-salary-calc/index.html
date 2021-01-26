@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Salary Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Salary Calculator</h1>
+    <p>Make a program that asks hourly salary and how many hours user worked on one day. With this information program calculates day’s salary. The salary is calculated as follows:</p>
+    <ul>
+        <li>first 7 hours by hourly salary</li>
+        <li>next 2 hours 50% extra</li>
+        <li>rest of the hours 100% extra</li>
+    </ul>
+ 
+    <form>
+        <div>
+            <label for="salaryPerHour">Hourly Salary: </label>
+            <input type="number" id="salaryPerHour">
+            <span>EUR</span>
+        </div>
+        <div>
+            <label for="dailyHours">Hours worked in a day: </label>
+            <input type="number" id="dailyHours">
+            <span>Hrs</span>
+        </div>
+    </form>
+    <button onclick="calculate()">Calculate</button>
+    <p><span id="answer"></span></p>
+
+    <script src="main.js"></script>
+</body>
+</html>
