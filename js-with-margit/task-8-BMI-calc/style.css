@@ -1,0 +1,39 @@
+body {
+  background-color: lightgrey;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+input {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+button {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+#answer {
+  font-weight: bold;
+}
+
+table {
+  background-color: rgb(235, 235, 235);
+  border-collapse: collapse;
+  border: 2px solid black;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td,
+th {
+  border: 1px solid black;
+  padding: 5px 10px;
+}
