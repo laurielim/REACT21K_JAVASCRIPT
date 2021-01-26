@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Math with 3 Numbers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Math with 3 Numbers</h1>
+    <p>Make a program that asks three numbers from the user. Program prints out sum of the numbers, if any of the numbers is positive. If all the numbers are positive, also print out multiplication. If all numbers are negative, text “only negatives” is printed. Handle zero as positive in this assignment.</p>
+    <form>
+        <h2>Give me 3 Numbers</h2>
+        <div>
+            <label for="number1">Number One</label>
+            <input type="number" id="number1">
+        </div>
+        <div>
+            <label for="number2">Number Two</label>
+            <input type="number" id="number2">
+        </div>
+        <div>
+            <label for="number3">Number Three</label>
+            <input type="number" id="number3">
+        </div>
+    </form>
+    <button onclick="math()">Submit</button>
+    <p><span id="answer"></span></p>
+
+    <script src="main.js"></script>
+</body>
+</html>
