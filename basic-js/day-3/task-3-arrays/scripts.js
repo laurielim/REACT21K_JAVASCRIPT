@@ -23,7 +23,7 @@ while (game != 0 ) {
 }
 
 // Calculate average spending to win jackpot
-let averageSpending = totalSpending / 5;
+let averageSpending = totalSpending / game;
 console.log(`You need on average ${averageSpending.toFixed(2)} EUR to win the jackpot.`)
 
 // Run the jackpot program and returns total spending
