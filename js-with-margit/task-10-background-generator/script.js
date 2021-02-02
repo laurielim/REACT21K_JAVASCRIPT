@@ -16,6 +16,7 @@ const setGradient = (event) => {
   for (const v of direction) {
     if (v.checked) {
       selectedDirection = v.value;
+      break;
     }
   }
 
