@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Gradient Background Generator</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generate custom gradient background easily</h1>
+      <form>
+        <section class="border border">
+          <h2>At first, choose the direction:</h2>
+          <div class="radio-input">
+            <input
+              type="radio"
+              name="direction"
+              id="LTR"
+              value="to right"
+              checked
+            />
+            <label for="LTR">Left to Right</label>
+          </div>
+          <div class="radio-input">
+            <input type="radio" name="direction" id="RTL" value="to left" />
+            <label for="RTL">Right to Left</label>
+          </div>
+          <div class="radio-input">
+            <input type="radio" name="direction" id="TTB" value="to bottom" />
+            <label for="TTB">Top to Bottom</label>
+          </div>
+          <div class="radio-input">
+            <input type="radio" name="direction" id="BTT" value="to top" />
+            <label for="BTT">Bottom to Top</label>
+          </div>
+        </section>
+        <section id="color" class="border">
+          <h2>Second, choose colors</h2>
+          <input
+            type="color"
+            name="first-color"
+            id="first-color"
+            value="#e47a69"
+          />
+          <input
+            type="color"
+            name="second-color"
+            id="second-color"
+            value="#a0387f"
+          />
+        </section>
+        <section id="generate" class="border">
+          <h2>Third, generate your gradient:</h2>
+          <button type="submit">Generate</button>
+        </section>
+      </form>
+      <section id="css-code">
+        <h2>Finally, copy your CSS code:</h2>
+        <p id="result"></p>
+      </section>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>

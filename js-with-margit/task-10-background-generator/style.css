@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: snow;
+  background-image: linear-gradient(to right, #e47a69, #a0387f);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h1,
+h2 {
+  margin-bottom: 20px;
+  font-weight: lighter;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+section {
+  padding: 50px;
+}
+
+.border {
+  border-top: 1px dashed lightgrey;
+  border-bottom: 1px dashed lightgrey;
+}
+
+.radio-input {
+  display: inline-block;
+}
+
+button {
+  padding: 16px;
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: snow;
+  background-color: rgb(40, 40, 40);
+}
+
+#result:hover {
+  cursor: pointer;
+}
