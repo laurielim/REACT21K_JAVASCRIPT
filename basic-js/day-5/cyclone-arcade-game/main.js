@@ -38,8 +38,6 @@ const cycloneArcade = () => {
   let counter = 0;
   let bulbContainer = document.querySelector("#bulbs");
 
-  bulbContainer.innerHTML = "";
-
   // Create bulbs
   while (counter < NUMBER_OF_BULBS) {
     // Create a bulb
@@ -87,6 +85,7 @@ const cycloneArcade = () => {
     } else {
       alert("Sorry, you lose!");
     }
+    location.reload();
   };
 
   document.getElementById("stop-btn").addEventListener("click", stopInterval);
