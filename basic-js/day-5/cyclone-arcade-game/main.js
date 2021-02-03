@@ -9,6 +9,27 @@
 // Adjustable time interval (with a slider input maybe?)
 // Adjustable number of Bulbs
 
+/**
+ * You don't have to care about this fn unless you want to
+ * @param {NodeList} nodes the list of elements to be arranged in a circle
+ * @return {void}
+ */
+const arrangeBulbsInACircle = (nodes) => {
+  const radius = "12em",
+    start = -90,
+    $els = [...nodes], // turn nodelist into a real array
+    numberOfEls = $els.length,
+    slice = 360 / numberOfEls,
+    index = 0;
+
+  $els.forEach((el, index) => {
+    const rotate = slice * index + start;
+    const rotateReverse = rotate * -1;
+
+    el.style.transform = `rotate(${rotate}deg) translate(${radius}) rotate(${rotateReverse}deg)`;
+  });
+};
+
 const cycloneArcade = () => {
   const NUMBER_OF_BULBS = document.querySelector("#bulb-num").value;
   const BLINKING_SPEED = document.querySelector("#blink-speed").value;
@@ -54,8 +75,6 @@ const cycloneArcade = () => {
 
     // Switch on current bulb
     bulbs[counter].classList.add("active");
-
-    console.log("hey");
   }, BLINKING_SPEED);
 
   const stopInterval = () => {
@@ -74,26 +93,3 @@ const cycloneArcade = () => {
 };
 
 document.getElementById("start-btn").addEventListener("click", cycloneArcade);
-
-/**
- * You don't have to care about this fn unless you want to
- * @param {NodeList} nodes the list of elements to be arranged in a circle
- * @return {void}
- */
-const arrangeBulbsInACircle = (nodes) => {
-  const radius = "12em",
-    start = -90,
-    $els = [...nodes], // turn nodelist into a real array
-    numberOfEls = $els.length,
-    slice = 360 / numberOfEls,
-    index = 0;
-
-  $els.forEach((el, index) => {
-    const rotate = slice * index + start;
-    const rotateReverse = rotate * -1;
-
-    el.style.transform = `rotate(${rotate}deg) translate(${radius}) rotate(${rotateReverse}deg)`;
-  });
-};
-
-//this is the bonus branch
