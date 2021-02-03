@@ -31,6 +31,9 @@ const arrangeBulbsInACircle = (nodes) => {
 };
 
 const cycloneArcade = () => {
+  // Prevent start button from being pressed again
+  document.getElementById("start-btn").disabled = "disabled";
+
   const NUMBER_OF_BULBS = document.querySelector("#bulb-num").value;
   const BLINKING_SPEED = document.querySelector("#blink-speed").value;
   const CHOSE_BULB_INDEX = Math.round(Math.random() * NUMBER_OF_BULBS);
