@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Cyclone Arcade Game</title>
+  </head>
+  <body>
+    <div class="container">
+      <section id="game">
+        <h1>Cyclone Arcade Game</h1>
+        <div class="game-settings">
+          <div class="user-input">
+            <label for="blink-speed">Time interval</label>
+            <input
+              type="range"
+              id="blink-speed"
+              max="1000"
+              min="100"
+              value="300"
+            />
+          </div>
+          <div class="user-input">
+            <label for="bulb-num">Number of bulbs</label>
+            <input type="number" id="bulb-num" value="50" max="55" min="10" />
+          </div>
+        </div>
+
+        <button class="btn" id="start-btn">start</button>
+        <button class="btn" id="stop-btn">stop</button>
+        <!-- </form> -->
+        <div id="bulbs"></div>
+      </section>
+      <section id="instruction">
+        <h2>Instructions</h2>
+        <ol>
+          <li>Create a number of bulbs and store them in an array</li>
+          <li>Turn them all off by default</li>
+          <li>Select the first one to turn on</li>
+          <li>
+            Switch off the previous one and turn on the next bulb after a
+            specified time interval
+          </li>
+          <li>
+            When reaching the end of the array, start again from the first bulb
+          </li>
+          <li>Add a button to stop the interval upon click</li>
+          <li>
+            Style the bulbs in a circle with the given stylesheet and Javascript
+            snippet
+          </li>
+          <li>
+            Bonus points:
+            <ul>
+              <li>Adjustable time interval (with a slider input maybe?)</li>
+              <li>Adjustable number of Bulbs</li>
+            </ul>
+          </li>
+        </ol>
+        <a
+          href="https://gist.github.com/bch-fullstack/be767557d9ad313ed740dcf00ff48dd7"
+          >Starter code</a
+        >
+      </section>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

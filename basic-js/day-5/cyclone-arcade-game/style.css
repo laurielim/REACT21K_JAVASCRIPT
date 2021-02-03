@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+#game {
+  text-align: center;
+}
+
+#bulbs {
+  top: 230px;
+  margin: 0 auto;
+  right: 15px;
+  height: 500px;
+  width: 500px;
+  position: relative;
+}
+
+.bulb {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background-color: blue;
+  margin: 5px;
+  display: inline-block;
+  border-radius: 50%;
+  -webkit-transition: background-color 0.1s ease-out;
+  -moz-transition: background-color 0.1s ease-out;
+  -o-transition: background-color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+}
+
+.bulb.chosen {
+  border: 3px solid red;
+}
+
+.bulb.active {
+  background-color: yellow;
+}
+
+.btn {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: yellow;
+  border: 1px solid black;
+  text-transform: uppercase;
+}
+.btn:focus {
+  outline: none;
+}
+
+.user-input {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.user-input label {
+  display: block;
+}
+
+input[type="number"] {
+  width: 50px;
+}
