@@ -9,6 +9,7 @@
 // Adjustable time interval (with a slider input maybe?)
 // Adjustable number of Bulbs
 
+/**        START OF EXTRA CODE TO STYLE BULBS        */
 /**
  * You don't have to care about this fn unless you want to
  * @param {NodeList} nodes the list of elements to be arranged in a circle
@@ -29,14 +30,20 @@ const arrangeBulbsInACircle = (nodes) => {
     el.style.transform = `rotate(${rotate}deg) translate(${radius}) rotate(${rotateReverse}deg)`;
   });
 };
+/**        END OF EXTRA CODE           */
 
+// Game code
 const cycloneArcade = () => {
   // Prevent start button from being pressed again
-  document.getElementById("start-btn").disabled = "disabled";
+  document.getElementById("start-btn").disabled = true;
+  // Allow user to press the stop button
+  document.getElementById("stop-btn").disabled = false;
 
+  // Get user input
   const NUMBER_OF_BULBS = document.querySelector("#bulb-num").value;
   const BLINKING_SPEED = document.querySelector("#blink-speed").value;
-  const CHOSE_BULB_INDEX = Math.round(Math.random() * NUMBER_OF_BULBS);
+  // Randomly select winning bulb
+  const CHOSEN_BULB_INDEX = Math.round(Math.random() * NUMBER_OF_BULBS);
 
   let counter = 0;
   let bulbContainer = document.querySelector("#bulbs");
@@ -55,13 +62,10 @@ const cycloneArcade = () => {
 
   // Assign list of bulbs to a variable
   const bulbs = document.querySelectorAll(".bulb");
-
-  // Select chosen bulb
-  bulbs[CHOSE_BULB_INDEX].classList.add("chosen");
-
   // invoke the fn on the class bulb elements to create the effect
-  arrangeBulbsInACircle(document.getElementsByClassName("bulb"));
-
+  arrangeBulbsInACircle(bulbs);
+  // Select chosen bulb
+  bulbs[CHOSEN_BULB_INDEX].classList.add("chosen");
   // Reset counter
   counter = 0;
   //Switch on first bulb
@@ -82,7 +86,10 @@ const cycloneArcade = () => {
     // Stops blinking
     clearInterval(startInterval);
 
-    // Announce results
+    // Announce results if current bulb has both class chosen and active
+    // Alternative solutions as seen in class:
+    // if (document.querySlector(".chosen.active") {
+    // if ( counter === CHOSEN_BULB_INDEX) {
     if (bulbs[counter].classList.value == "bulb chosen active") {
       alert("Congratulation, you won!");
     } else {
@@ -91,7 +98,9 @@ const cycloneArcade = () => {
     location.reload();
   };
 
+  // Stop interval when stop button is pressed
   document.getElementById("stop-btn").addEventListener("click", stopInterval);
 };
 
+// Start game code when start button is pressed
 document.getElementById("start-btn").addEventListener("click", cycloneArcade);
