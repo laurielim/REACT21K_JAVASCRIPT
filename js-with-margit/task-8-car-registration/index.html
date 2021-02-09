@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Car Registration</title>
+  </head>
+  <body>
+    <main>
+    <div class="container">
+      <h2>Car Registration</h1>
+      <form id="register-form">
+        <div class="user-input">
+          <label for="register-license" class="required">License Plate</label>
+          <input type="text" id="register-license" required/>
+        </div>
+        <div class="user-input">
+          <label for="owner">Car Owner</label>
+          <input type="text" id="owner" />
+        </div>
+        <div class="user-input">
+          <label for="make" class="required">Car Make</label>
+          <input type="text" id="make" required/>
+        </div>
+        <div class="user-input">
+          <label for="model" class="required">Car Model</label>
+          <input type="text" id="model" required />
+        </div>
+        <div class="user-input">
+          <label for="price" class="required">Price (EUR)</label>
+          <input type="number" id="price" required/>
+        </div>
+        <div class="user-input">
+          <label for="color">Color</label>
+          <input type="text" id="color" />
+        </div>
+        <div class="buttons">
+          <button type="submit" id="register">Register License Plate</button>
+          <button type="reset">Reset</button>
+        </div>
+      </form>
+    </div>
+    <div class="container">
+      <h2>Search Registered Cars</h2>
+      <form id="search-form">
+        <div class="user-input">
+        <label for="search-license" class=required>License Plate</label>
+        <input type="text" id="search-license" required/>
+      </div>
+      <button type="Submit" id="search">Search License Plate</button>
+      </form>
+      <h3>Search Results:</h3>
+      <p id="result">...</p>
+      <p id="discount"></p>
+
+    </div>
+  </main>
+    <script src="script.js"></script>
+  </body>
+</html>

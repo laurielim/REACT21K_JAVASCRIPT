@@ -1,0 +1,56 @@
+body {
+  background-color: navy;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container {
+  width: 28rem;
+  background-color: white;
+  padding: 2rem 0;
+  border-radius: 2%;
+  margin: 1rem 0;
+  min-height: 20rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.user-input {
+  width: 25rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 2px solid lightgray;
+  width: 95%;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+button {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background-color: lightsteelblue;
+  border-radius: 5px;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+}
