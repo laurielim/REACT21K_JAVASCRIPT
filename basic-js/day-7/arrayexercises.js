@@ -239,6 +239,13 @@ let phonesArray = peopleInfo.filter((el) => {
   return el.split("").some((x) => Number.isInteger(Number(x)));
 });
 
+let phonesArray2 = peopleInfo.filter((el) => {
+  // Check if element contains digits using regular expression
+  let regex = /\d/;
+  if (regex.test(el)) {
+    return el;
+  }
+});
 console.log(phonesArray);
 console.log(expectedPhones);
 
