@@ -95,6 +95,7 @@ fifthArray.forEach((el) => {
 
 console.log(uniqueArray);
 console.log(expectedResult);
+
 /**
  * Task 4: You are provided 2 arrays
  * write a logic that will compare elements of the 2 arrays to find out if they contain same elements
@@ -207,6 +208,10 @@ let deconstructedArray = deconstructArray(tenthArray);
 console.log(deconstructedArray);
 console.log(expectedResult);
 
+// Simplest solution provided by Heli, using the .flat() method
+let flatArray = tenthArray.flat(10);
+console.log(flatArray);
+
 /**
  * Task 6: The array you are given contains all kinds of personal information
  * Filter out all email addresses into a separate array
@@ -298,7 +303,11 @@ const sample =
 
 let resultTask7 = [];
 let sampleTask7 = sample.split(" ");
+// Using forEach(), loop through each word
 sampleTask7.forEach((word) => {
   word.includes("o") ? resultTask7.push(1) : resultTask7.push(0);
 });
 console.log(resultTask7);
+// Using map(), producing a new array directly
+let resultTask72 = sampleTask7.map((word) => (word.includes("o") ? 1 : 0));
+console.log(resultTask72);
