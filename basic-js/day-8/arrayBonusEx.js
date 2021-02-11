@@ -56,7 +56,7 @@ let pastMembers = [...band.members.past];
 let allMembers = currentMembers.concat(pastMembers);
 
 /**
- * Goes through an array of object, sort the array and return an array containing the values of the name property in lowercase
+ * Goes through an array of object, sort the array and return an array containing the values of the name property of each object in lowercase
  * @param {array} arrayOfObj
  */
 const getNames = (arrayOfObj) => {
@@ -69,7 +69,7 @@ const getNames = (arrayOfObj) => {
       return b.age - a.age;
     } else {
       // If they are the same age, sort by name by ASC
-      return a.name - b.name ? 1 : -1;
+      return a.name > b.name ? 1 : -1;
     }
   });
 
