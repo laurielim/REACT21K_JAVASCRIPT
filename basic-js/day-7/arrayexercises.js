@@ -113,6 +113,11 @@ let eighthArray = [1, 2, true, false, "hello", 3, "moi moi"];
 let ninthArray = [];
 
 // function that takes in 2 parameters (2 arrays)
+/**
+ * Compares 2 array and state whether the elements contain the same elements, regardless of the order of the elements
+ * @param {array} arrayOne
+ * @param {array} arrayTwo
+ */
 const compareArrays = (arrayOne, arrayTwo) => {
   // Compare arrays only if they have the same lenght
   if (arrayOne.length === arrayTwo.length) {
@@ -179,7 +184,10 @@ expectedResult = [
   true,
 ];
 
-// Function that takes in an array and returns an array without any nested array
+/**
+ * Takes in an array and returns an array without any nested array
+ * @param {array} originalArray
+ */
 const deconstructArray = (originalArray) => {
   // Initialize array to contain result
   let result = [];
