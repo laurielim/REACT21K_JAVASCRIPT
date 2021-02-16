@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+  </head>
+  <body>
+    <h1>How many days until...?</h1>
+    <form>
+      <div class="user-input">
+        <label for="start-date">Start</label>
+        <input type="date" name="start-date" id="start-date" />
+      </div>
+      <div class="user-input">
+        <label for="end-date" class="required">End</label>
+        <input type="date" name="end-date" id="end-date" required />
+      </div>
+      <div class="user-input">
+        <label for="event-name" class="required">Event</label>
+        <input type="text" name="event-name" id="event-name" required />
+      </div>
+      <button type="submit" id="button-submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+
+    <p id="result"></p>
+    <div><p id="countdown">0 days 00 hours 00 minutes 00 seconds</p></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
