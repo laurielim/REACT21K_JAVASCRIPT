@@ -50,19 +50,22 @@ nav li {
 }
 
 /*************** Main Area ***************/
-section:first-child {
+
+section {
+  scroll-margin-top: 4rem;
   min-height: 50vh;
+}
+
+section:first-child {
   background-color: silver;
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 section:nth-child(2) {
-  min-height: 50vh;
   background-color: darkgrey;
 }
 
 section:last-child {
-  min-height: 50vh;
   background-color: grey;
 }
 
