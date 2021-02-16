@@ -1,0 +1,109 @@
+/*************** Global Settings ***************/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header,
+section,
+footer {
+  padding: 2rem;
+}
+
+section,
+footer {
+  color: white;
+}
+
+/*************** Header Area ***************/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: white;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.bg {
+  background-color: #000000aa;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+#mobile-menu-button {
+  display: none;
+}
+
+/*************** Main Area ***************/
+section:first-child {
+  min-height: 50vh;
+  background-color: silver;
+  margin-top: 100px;
+}
+
+section:nth-child(2) {
+  min-height: 50vh;
+  background-color: darkgrey;
+}
+
+section:last-child {
+  min-height: 50vh;
+  background-color: grey;
+}
+
+/*************** Footer Area ***************/
+
+footer {
+  background-color: dimgrey;
+  min-height: 10vh;
+}
+
+#back-to-top {
+  padding: 1rem;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  display: none;
+}
+
+@media (max-width: 576px) {
+  #mobile-menu-button {
+    display: block;
+  }
+  nav ul {
+    display: none;
+  }
+  nav.responsive ul {
+    display: block;
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    padding-top: 1rem;
+  }
+  nav ul li {
+    display: blocK;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 1rem 2rem;
+  }
+}
