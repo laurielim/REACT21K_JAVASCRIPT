@@ -1,7 +1,23 @@
-let startDate, endDate, eventName;
+let startDate, endDate, eventName, holidays;
 let result = document.getElementById("result");
 let buttonSubmit = document.getElementById("button-submit");
 let countdown = document.getElementById("countdown");
+
+/*************** Bonus step ***************/
+let currentYear = new Date();
+currentYear = currentYear.getFullYear();
+// Get bank holiday information from https://calendarific.com
+const api = `https://calendarific.com/api/v2/holidays?&api_key=775f045d9091420ca9a7ede8070aa6f9e38a011c&country=FI&year=${currentYear}`;
+
+// Use api following tutorial by Dev Ed https://www.youtube.com/watch?v=wPElVpR1rwA
+fetch(api)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    holidays = data.response.holidays;
+    console.log(holidays);
+  });
 
 /**
  * Calculates number of days between today and an end date
@@ -28,7 +44,7 @@ const calcDays = (event) => {
   /*************** Second step ***************/
 
   // Initialize currentDay and day counter
-  let currentDay = startDate;
+  let currentDay = new Date(JSON.parse(JSON.stringify(startDate)));
   // Set to -1 to exclude endDate
   let dayCount = 0;
 
@@ -41,8 +57,12 @@ const calcDays = (event) => {
     }
   }
 
+  let holidayCount = checkForHolidays(startDate, endDate);
+
   // Display result on screen
-  result.textContent = `${daysDiff} days and ${dayCount} Business days until ${eventName.value}`;
+  result.textContent = `${daysDiff} days and ${
+    dayCount - holidayCount
+  } Business days until ${eventName.value}`;
 
   /*************** Fourth step ***************/
   // setInterval after every second
@@ -68,6 +88,31 @@ const calcDays = (event) => {
 };
 
 buttonSubmit.addEventListener("click", calcDays);
+
+const checkForHolidays = (start, end) => {
+  let holidayCounter = 0;
+  let holidayDate = holidays.map((holiday) => {
+    return new Date(holiday.date.iso);
+  });
+
+  console.log(start);
+  console.log(end);
+
+  for (date of holidayDate) {
+    console.log(date);
+    if (
+      date > start &&
+      date < end &&
+      date.getDay() !== 0 &&
+      date.getDay() !== 6
+    ) {
+      console.log(holidayCounter);
+      holidayCounter++;
+    }
+  }
+  console.log(holidayCounter);
+  return holidayCounter;
+};
 
 // Function from https://gist.github.com/flangofas/714f401b63a1c3d84aaa
 
