@@ -5,27 +5,31 @@ let btnEqual = document.getElementById("result");
 let btnClear = document.getElementById("clear");
 // Initialize variable for calculator display
 let display = document.getElementById("input");
+let displayCalc = document.getElementById("calculation");
 
 // Initialize variable to record current number and operator;
 let currentNumber = "";
+let storedNumber = "";
 let currentOperator = "";
 // Initialize variable to record calculation;
 let total = 0;
-// Initialize a switch for when a number need to be calculated
-let shouldCompute = false;
-let wasComputed = true;
+// Initialize a variable to track user input
+let lastUserInput = "";
 
 // Add event listeners for numbers div and et user number input
 btnNumbers.forEach((btn) => {
   btn.addEventListener("click", function () {
     // Compute numbers if an operator has previously selected
-    if (shouldCompute) {
+    if (lastUserInput === "operator") {
       // Call fn that handles all calculations
       computeNumbers();
-      // Turn off switch
-      shouldCompute = false;
       // Reset current number for new input
       currentNumber = "";
+    }
+
+    if (lastUserInput === "equal") {
+      // Reset current number for new input
+      resetCalc();
     }
 
     // Get user input
@@ -38,6 +42,8 @@ btnNumbers.forEach((btn) => {
       currentNumber = recordInput(currentNumber, userInput);
       // Update display with current number
       updateDisplay(currentNumber);
+      // Update user input tracker
+      lastUserInput = "number";
     }
   });
 });
@@ -45,50 +51,59 @@ btnNumbers.forEach((btn) => {
 // Add event listeners for operators div and get user operator input
 btnOperators.forEach((btn) => {
   btn.addEventListener("click", function () {
-    // If this is the first operator, pass current number on to total
+    /*  // If this is the first operator, pass current number on to total
     if (currentOperator === "" && currentNumber !== "") {
-      total = parseFloat(currentNumber);
+      storedNumber = parseFloat(currentNumber);
     }
+
+    if (lastUserInput === "equal") {
+      currentNumber = total;
+    } */
+    storedNumber = currentNumber;
+
     // Record the new operator input
     currentOperator = this.textContent;
-    // Turn on switch
-    shouldCompute = true;
+    // Indicate that this was the last user input
+    lastUserInput = "operator";
   });
 });
 
 // Add event listener for the equal button
 btnEqual.addEventListener("click", function () {
-  // Call fn that handles all calculations
+  // Compute numbers if last input was number or the equal sign
+  if (lastUserInput === "equal") {
+    computeNumbers();
+  }
+  // Update display will calculated total
   updateDisplay(total);
+  // Update user input tracker
+  lastUserInput = "equal";
 });
 
 // Add event listener for the clear button which resets everything
-btnClear.addEventListener("click", () => {
-  clearNumbers();
-  clearDisplay();
-  clearOperator();
-});
+btnClear.addEventListener("click", resetCalc);
 
 /**
- * This functions handles the calculations of the calculator
+ * This functions handles the arithmetics of the calculator
  */
 function computeNumbers() {
   // Stop user from dividing by zero
   if (currentOperator === "÷" && currentNumber === "0") {
     // Inform user of error
-    clearDisplay();
     display.textContent = "Cannot divide by 0";
     // Reset all variables
-    clearNumbers();
-    clearOperator();
+    resetCalc();
     return;
   }
   // Assume current number is 0 if user did not input anything yet
   currentNumber === "" ? (currentNumber = 0) : "";
   // If user has made a previous operator input, update total
-  console.log(total, currentOperator, currentNumber);
-  total = calculate(total, currentOperator, parseFloat(currentNumber));
-  console.log("hola");
+  console.log(storedNumber, currentOperator, currentNumber);
+  total = calculate(
+    parseFloat(storedNumber),
+    currentOperator,
+    parseFloat(currentNumber)
+  );
 }
 
 /**
@@ -139,6 +154,7 @@ function updateDisplay(number) {
  * @return {void}
  */
 function clearNumbers() {
+  storedNumber = "";
   currentNumber = "";
   total = 0;
 }
@@ -150,11 +166,15 @@ function clearOperator() {
   currentOperator = "";
 }
 /**
- * Reset display
+ * Reset calculator
  * @return {void}
  */
-function clearDisplay() {
+function resetCalc() {
   display.textContent = "0";
+  displayCalc.textContent = "";
+  lastUserInput = "";
+  clearNumbers();
+  clearOperator();
 }
 
 // Trigger click event if a number is pressed on keyboard
