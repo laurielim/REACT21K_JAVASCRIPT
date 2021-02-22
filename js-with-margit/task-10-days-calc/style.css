@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: antiquewhite;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+form {
+  margin: 0 auto;
+  max-width: 25rem;
+}
+
+.user-input {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.date {
+  width: 12.5rem;
+}
+
+.date > input {
+  width: 12rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid rgba(0, 183, 255);
+}
+
+#event-name {
+  width: 25rem;
+}
+
+button {
+  width: 5rem;
+  height: 2.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: coral;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button:focus {
+  outline: none;
+}
+
+#countdown {
+  font-size: 3rem;
+}
