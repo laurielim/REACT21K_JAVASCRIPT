@@ -154,7 +154,6 @@ function calculate(numOne, operator, numTwo) {
  * This functions handles the arithmetics of the calculator
  */
 function computeNumbers() {
-  console.log("called");
   // Stop user from dividing by zero
   if (currentOperator === "÷" && currentNumber === "0") {
     // Inform user of error
@@ -221,6 +220,30 @@ function resetCalc() {
 // Trigger click event if a number is pressed on keyboard
 document.body.addEventListener("keypress", (event) => {
   switch (event.keyCode) {
+    case 13:
+      btnEqual.click();
+      break;
+    case 42:
+      btnOperators[2].click();
+      break;
+    case 43:
+      btnOperators[0].click();
+      break;
+    case 44:
+      btnNumbers[10].click();
+      break;
+    case 45:
+      btnOperators[1].click();
+      break;
+    case 46:
+      btnNumbers[10].click();
+      break;
+    case 47:
+      btnOperators[3].click();
+      break;
+    case 48:
+      btnNumbers[9].click();
+      break;
     case 49:
       btnNumbers[6].click();
       break;
@@ -229,6 +252,27 @@ document.body.addEventListener("keypress", (event) => {
       break;
     case 51:
       btnNumbers[8].click();
+      break;
+    case 52:
+      btnNumbers[3].click();
+      break;
+    case 53:
+      btnNumbers[4].click();
+      break;
+    case 54:
+      btnNumbers[5].click();
+      break;
+    case 55:
+      btnNumbers[0].click();
+      break;
+    case 56:
+      btnNumbers[1].click();
+      break;
+    case 57:
+      btnNumbers[2].click();
+      break;
+    case 99:
+      btnClear.click();
       break;
   }
 });
