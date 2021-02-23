@@ -19,7 +19,6 @@ fetch(api)
   })
   .then((data) => {
     holidays = data.response.holidays;
-    console.log(holidays);
   });
 
 /* // For testing purpose, get array containing the holidays for 2021;
@@ -132,18 +131,21 @@ const calcDays = (e) => {
     clearInterval(timer);
     clearDisplay();
   });
-  // Add event listener if reset button is clicked to clear interval and display
+  // Add event listener if submit button is clicked to clear interval
   buttonSubmit.addEventListener("click", () => {
     clearInterval(timer);
   });
 
+  // Display Event name on Screen
   displayEvent.textContent = `until ${eventName.value}`;
 
+  // Convert/Format start day to a string
   displayStart = `${startDate.getDate().toString().padStart(2, "0")}/${(
     startDate.getMonth() + 1
   )
     .toString()
     .padStart(2, "0")}/${startDate.getFullYear()}`;
+  // Convert/Format end day to a string
   displayEnd = `${endDate.getDate().toString().padStart(2, "0")}/${(
     endDate.getMonth() + 1
   )

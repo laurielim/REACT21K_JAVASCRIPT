@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 95%;
   max-width: 1200px;
   margin: 1rem auto;
 }
@@ -28,7 +28,7 @@ form {
 .user-input {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .mb-1rem {
@@ -55,15 +55,27 @@ input:focus {
 }
 
 .date {
-  width: 12.5rem;
+  width: 50%;
 }
 
 .date > input {
-  width: 12rem;
+  width: 98%;
+}
+
+#start-date {
+  float: left;
+}
+
+#end-date {
+  float: right;
+}
+
+.name {
+  width: 100%;
 }
 
 #event-name {
-  width: 25rem;
+  width: 100%;
 }
 
 button {
@@ -82,7 +94,7 @@ button:focus {
   outline: none;
 }
 
-/******************** Display *******************/
+/******************** Result *******************/
 
 #countdown {
   font-size: 3.5rem;
@@ -93,4 +105,24 @@ button:focus {
 #event {
   font-size: 2rem;
   text-transform: capitalize;
+}
+
+/******************** Mobile *******************/
+
+@media (max-width: 768px) {
+  #countdown {
+    font-size: 3rem;
+  }
+  #event {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .date {
+    width: 100%;
+  }
+  .date > input {
+    width: 100%;
+  }
 }
