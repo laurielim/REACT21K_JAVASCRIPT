@@ -104,8 +104,10 @@ btnEqual.addEventListener("click", function () {
     //  Add current number to calculation tracker
     userCalc += `${currentNumber}=`;
   } else if (lastUserInput === "equal") {
-    // Add new operation to calculation tracker
-    userCalc = `${storedNumber}${currentOperator}${currentNumber}=`;
+    if (currentOperator !== "") {
+      // If current operator is not emptydd new operation to calculation tracker
+      userCalc = `${storedNumber}${currentOperator}${currentNumber}=`;
+    }
   }
   // Compute total
   computeNumbers();
@@ -165,12 +167,17 @@ function computeNumbers() {
   // Assume current number is 0 if user did not input anything yet
   currentNumber === "" ? (currentNumber = 0) : "";
   // If user has made a previous operator input, update total
-  total = calculate(
-    parseFloat(storedNumber),
-    currentOperator,
-    parseFloat(currentNumber)
-  );
-
+  if (!currentOperator || !storedNumber) {
+    // If there is no stored number or operator, total is currentNumber
+    total = currentNumber;
+  } else {
+    // Otherwise, calculate total;
+    total = calculate(
+      parseFloat(storedNumber),
+      currentOperator,
+      parseFloat(currentNumber)
+    );
+  }
   storedNumber = total;
 }
 
@@ -217,7 +224,7 @@ function resetCalc() {
 
 /******************** Bonus ********************/
 
-// Trigger click event if a number is pressed on keyboard
+// Trigger click event if a key is pressed on keyboard
 document.body.addEventListener("keypress", (event) => {
   switch (event.keyCode) {
     case 13:
