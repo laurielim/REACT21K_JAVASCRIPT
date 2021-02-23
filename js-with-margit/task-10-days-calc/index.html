@@ -4,29 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
     <title>Countdown</title>
   </head>
   <body>
-    <h1>How many days until...?</h1>
-    <form>
-      <div class="user-input">
-        <label for="start-date">Start</label>
-        <input type="date" name="start-date" id="start-date" />
-      </div>
-      <div class="user-input">
-        <label for="end-date" class="required">End</label>
-        <input type="date" name="end-date" id="end-date" required />
-      </div>
-      <div class="user-input">
-        <label for="event-name" class="required">Event</label>
-        <input type="text" name="event-name" id="event-name" required />
-      </div>
-      <button type="submit" id="button-submit">Submit</button>
-      <button type="reset">Reset</button>
-    </form>
+    <div class="container">
+      <h1>How many days until...?</h1>
+      <form>
+        <div class="user-input">
+          <div class="date mb-1rem">
+            <label for="start-date">Start</label>
+            <input type="date" name="start-date" id="start-date" />
+          </div>
+          <div class="date mb-1rem">
+            <label for="end-date" class="required">End</label>
+            <input type="date" name="end-date" id="end-date" required />
+          </div>
+          <div class="name mb-1rem">
+            <label for="event-name" class="required">Event</label>
+            <input type="text" name="event-name" id="event-name" required />
+          </div>
+        </div>
+        <div class="button mb-1rem">
+          <button type="submit" id="button-submit">Submit</button>
+          <button type="reset" id="reset">Reset</button>
+        </div>
+      </form>
 
-    <p id="result"></p>
-    <div><p id="countdown">0 days 00 hours 00 minutes 00 seconds</p></div>
+      <div><p id="countdown">0 days 00 hours 00 minutes 00 seconds</p></div>
+      <p id="event" class="mb-1rem"></p>
+      <p id="result"></p>
+    </div>
 
     <script src="script.js"></script>
   </body>

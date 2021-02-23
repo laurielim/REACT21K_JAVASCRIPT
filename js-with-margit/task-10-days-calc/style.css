@@ -1,3 +1,5 @@
+/******************** General *******************/
+
 * {
   margin: 0;
   padding: 0;
@@ -5,20 +7,21 @@
 }
 
 body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background-color: antiquewhite;
+  font-family: "Montserrat", sans-serif;
+  background-color: #faebd7;
   text-align: center;
 }
 
 .container {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
+/******************** Form *******************/
+
 form {
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 25rem;
 }
 
@@ -28,11 +31,27 @@ form {
   justify-content: space-between;
 }
 
+.mb-1rem {
+  margin-bottom: 1rem;
+}
+
 label {
   display: block;
   font-size: 1rem;
   font-weight: bold;
   text-align: left;
+}
+
+input {
+  padding: 0.5rem;
+  border: 2px solid lightgray;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid rgba(0, 183, 255);
 }
 
 .date {
@@ -43,17 +62,6 @@ label {
   width: 12rem;
 }
 
-input {
-  padding: 0.5rem;
-  border: 2px solid lightgray;
-  border-radius: 5px;
-}
-
-input:focus {
-  outline: none;
-  border: 2px solid rgba(0, 183, 255);
-}
-
 #event-name {
   width: 25rem;
 }
@@ -62,17 +70,27 @@ button {
   width: 5rem;
   height: 2.5rem;
   text-transform: uppercase;
-  font-weight: bold;
-  background-color: coral;
+  background-color: #2d3142;
+  color: white;
+  box-shadow: 0 0 5px grey;
   border: none;
-  border-radius: 5px;
   font-size: 1rem;
+  margin: 0 1rem;
 }
 
 button:focus {
   outline: none;
 }
 
+/******************** Display *******************/
+
 #countdown {
-  font-size: 3rem;
+  font-size: 3.5rem;
+  font-family: "Bebas Neue", cursive;
+  margin-top: 2rem;
+}
+
+#event {
+  font-size: 2rem;
+  text-transform: capitalize;
 }
