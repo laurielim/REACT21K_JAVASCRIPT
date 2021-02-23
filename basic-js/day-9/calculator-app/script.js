@@ -11,23 +11,22 @@ let displayCalc = document.getElementById("calculation");
 let currentNumber = "";
 let storedNumber = "";
 let currentOperator = "";
-// Initialize variable to record calculation;
+// Initialize variable to record result of calculation;
 let total = 0;
-// Initialize a variable to track user input
+// Initialize variable to track last user input
 let lastUserInput = "";
+// Initialize variable to track calculation
+let userCalc = "";
+
+/******************** Numbers ********************/
 
 // Add event listeners for numbers div and et user number input
 btnNumbers.forEach((btn) => {
   btn.addEventListener("click", function () {
-    // Compute numbers if an operator has previously selected
     if (lastUserInput === "operator") {
-      // Call fn that handles all calculations
-      computeNumbers();
-      // Reset current number for new input
+      // Reset current number
       currentNumber = "";
-    }
-
-    if (lastUserInput === "equal") {
+    } else if (lastUserInput === "equal") {
       // Reset current number for new input
       resetCalc();
     }
@@ -39,7 +38,7 @@ btnNumbers.forEach((btn) => {
       return;
     } else {
       // Add input to current number
-      currentNumber = recordInput(currentNumber, userInput);
+      currentNumber += userInput;
       // Update display with current number
       updateDisplay(currentNumber);
       // Update user input tracker
@@ -48,73 +47,83 @@ btnNumbers.forEach((btn) => {
   });
 });
 
+/******************** Operators ********************/
+
 // Add event listeners for operators div and get user operator input
 btnOperators.forEach((btn) => {
   btn.addEventListener("click", function () {
-    /*  // If this is the first operator, pass current number on to total
-    if (currentOperator === "" && currentNumber !== "") {
-      storedNumber = parseFloat(currentNumber);
+    // If this is the first input
+    if (lastUserInput === "") {
+      // Stored number is 0
+      storedNumber = 0;
+      // Record the new operator input
+      currentOperator = this.textContent;
+      // Add operation to calculation tracker
+      userCalc += `${storedNumber}${currentOperator}`;
+      // If last user input was a number
+    } else if (lastUserInput === "number") {
+      // If this is the first calculation
+      if (storedNumber === "") {
+        storedNumber = currentNumber;
+      } else {
+        // Compute total if there is a number that is stored
+        computeNumbers();
+        // Update display
+        updateDisplay(total);
+      }
+      // Record the new operator input
+      currentOperator = this.textContent;
+      // Add operation to calculation tracker
+      userCalc += `${currentNumber}${currentOperator}`;
+      // If last user input was an operator
+    } else if (lastUserInput === "operator") {
+      // Record the new operator input
+      currentOperator = this.textContent;
+      // If last user input is an operator, change the operator in calculation tracker
+      userCalc = userCalc.slice(0, userCalc.length - 1) + currentOperator;
+    } else if (lastUserInput === "equal") {
+      // Record the new operator input
+      currentOperator = this.textContent;
+      // Add new operation to calculation tracker
+      userCalc = `${storedNumber}${currentOperator}`;
     }
+    // Update calc display with user calculation
+    updateCalcDisplay(userCalc);
 
-    if (lastUserInput === "equal") {
-      currentNumber = total;
-    } */
-    storedNumber = currentNumber;
-
-    // Record the new operator input
-    currentOperator = this.textContent;
-    // Indicate that this was the last user input
+    // Update user input tracker
     lastUserInput = "operator";
   });
 });
 
+/******************** Equal Btn ********************/
+
 // Add event listener for the equal button
 btnEqual.addEventListener("click", function () {
-  // Compute numbers if last input was number or the equal sign
-  if (lastUserInput === "equal") {
-    computeNumbers();
+  // Compute numbers if last input was number
+  if (lastUserInput === "number" || lastUserInput === "operator") {
+    //  Add current number to calculation tracker
+    userCalc += `${currentNumber}=`;
+  } else if (lastUserInput === "equal") {
+    // Add new operation to calculation tracker
+    userCalc = `${storedNumber}${currentOperator}${currentNumber}=`;
   }
+  // Compute total
+  computeNumbers();
   // Update display will calculated total
   updateDisplay(total);
+  // Update calc display with user calcuation
+  updateCalcDisplay(userCalc);
+
   // Update user input tracker
   lastUserInput = "equal";
 });
 
+/******************** Clear Btn ********************/
+
 // Add event listener for the clear button which resets everything
 btnClear.addEventListener("click", resetCalc);
 
-/**
- * This functions handles the arithmetics of the calculator
- */
-function computeNumbers() {
-  // Stop user from dividing by zero
-  if (currentOperator === "÷" && currentNumber === "0") {
-    // Inform user of error
-    display.textContent = "Cannot divide by 0";
-    // Reset all variables
-    resetCalc();
-    return;
-  }
-  // Assume current number is 0 if user did not input anything yet
-  currentNumber === "" ? (currentNumber = 0) : "";
-  // If user has made a previous operator input, update total
-  console.log(storedNumber, currentOperator, currentNumber);
-  total = calculate(
-    parseFloat(storedNumber),
-    currentOperator,
-    parseFloat(currentNumber)
-  );
-}
-
-/**
- * Concatenate 2 given strings
- * @param {String} existingInput the input in currentNumber
- * @param {String} newInput the new user input
- * @return {String} combined strings
- */
-function recordInput(existingInput, newInput) {
-  return existingInput + newInput;
-}
+/******************** Functions ********************/
 
 /**
  * Add, subtrack, multiply, divide number one with number two
@@ -142,12 +151,41 @@ function calculate(numOne, operator, numTwo) {
 }
 
 /**
+ * This functions handles the arithmetics of the calculator
+ */
+function computeNumbers() {
+  console.log("called");
+  // Stop user from dividing by zero
+  if (currentOperator === "÷" && currentNumber === "0") {
+    // Inform user of error
+    display.textContent = "Cannot divide by 0";
+    // Reset all variables
+    resetCalc();
+    return;
+  }
+  // Assume current number is 0 if user did not input anything yet
+  currentNumber === "" ? (currentNumber = 0) : "";
+  // If user has made a previous operator input, update total
+  total = calculate(
+    parseFloat(storedNumber),
+    currentOperator,
+    parseFloat(currentNumber)
+  );
+
+  storedNumber = total;
+}
+
+/**
  * Updates calculator display with given number
  * @param {String} number number to show user
  * @return {void}
  */
 function updateDisplay(number) {
   display.textContent = number;
+}
+
+function updateCalcDisplay(text) {
+  displayCalc.textContent = text;
 }
 /**
  * Reset all number variables
@@ -172,10 +210,13 @@ function clearOperator() {
 function resetCalc() {
   display.textContent = "0";
   displayCalc.textContent = "";
+  userCalc = "";
   lastUserInput = "";
   clearNumbers();
   clearOperator();
 }
+
+/******************** Bonus ********************/
 
 // Trigger click event if a number is pressed on keyboard
 document.body.addEventListener("keypress", (event) => {
