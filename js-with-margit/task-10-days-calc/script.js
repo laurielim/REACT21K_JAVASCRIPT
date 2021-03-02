@@ -6,7 +6,7 @@ let buttonReset = document.getElementById("reset");
 let countdown = document.getElementById("countdown");
 
 /****************************** Bonus step ******************************/
-let currentYear = new Date();
+/* let currentYear = new Date();
 let holidays;
 currentYear = currentYear.getFullYear();
 // Get bank holiday information from https://calendarific.com
@@ -19,10 +19,10 @@ fetch(api)
   })
   .then((data) => {
     holidays = data.response.holidays;
-  });
+  }); */
 
-/* // For testing purpose, get array containing the holidays for 2021;
-holidays = getHolidays() */
+// For testing purpose, get array containing the holidays for 2021;
+holidays = getHolidays();
 
 /**
  * Calculates number of days between a start date and an end date
@@ -32,7 +32,7 @@ const calcDays = (e) => {
   // Stop refresh
   e.preventDefault();
 
-  /****************************** First & Third step ******************************/
+  /****************************** First & Third step: Calender Days ******************************/
   let startDate, endDate, eventName, displayStart, displayEnd;
 
   // Get user input
@@ -71,7 +71,7 @@ const calcDays = (e) => {
   // Convert results which are in miliseconds to days
   let daysDiff = convertMiliseconds(diff, "d");
 
-  /****************************** Second step ******************************/
+  /****************************** Second step: Business Days ******************************/
 
   // Initialize currentDay by making a copy of startDate
   let currentDay = new Date(JSON.parse(JSON.stringify(startDate)));
@@ -90,6 +90,26 @@ const calcDays = (e) => {
   // Check for number of bank holidays
   let holidayCount = checkForBankHolidays(startDate, endDate, holidays);
 
+  // Convert/Format start day to a string
+  displayStart = `${startDate.getDate().toString().padStart(2, "0")}/${(
+    startDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}/${startDate.getFullYear()}`;
+  // Convert/Format end day to a string
+  displayEnd = `${endDate.getDate().toString().padStart(2, "0")}/${(
+    endDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}/${endDate.getFullYear()}`;
+
+  // Display result on screen
+  result.textContent = `${daysDiff} Calender days and ${
+    dayCount - holidayCount
+  } Business days between ${displayStart} and ${displayEnd}`;
+
+  /****************************** Fourth step: Countdown Timer ******************************/
+
   // Display original countdown
   let update = new Date();
   // Calculate the new difference
@@ -103,7 +123,6 @@ const calcDays = (e) => {
       ${liveDiff["m"].toString().padStart(2, "0")} Minutes 
       ${liveDiff["s"].toString().padStart(2, "0")} Seconds`;
 
-  /****************************** Fourth step ******************************/
   // setInterval after every second
   let timer = setInterval(() => {
     // Get the new time/date
@@ -138,24 +157,6 @@ const calcDays = (e) => {
 
   // Display Event name on Screen
   displayEvent.textContent = `until ${eventName.value}`;
-
-  // Convert/Format start day to a string
-  displayStart = `${startDate.getDate().toString().padStart(2, "0")}/${(
-    startDate.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}/${startDate.getFullYear()}`;
-  // Convert/Format end day to a string
-  displayEnd = `${endDate.getDate().toString().padStart(2, "0")}/${(
-    endDate.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}/${endDate.getFullYear()}`;
-
-  // Display result on screen
-  result.textContent = `${daysDiff} Calender days and ${
-    dayCount - holidayCount
-  } Business days between ${displayStart} and ${displayEnd}`;
 };
 
 // Add event listener to submit button
