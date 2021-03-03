@@ -6,12 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Poke Query</title>
     <style>
-      a {
-        display: block;
+      #poke-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      div {
+        width: 80px;
+        padding: 0.5rem 1rem;
+        text-transform: capitalize;
       }
     </style>
   </head>
   <body>
+    <section id="poke-info"></section>
     <section id="poke-list"></section>
     <script src="script.js"></script>
   </body>
