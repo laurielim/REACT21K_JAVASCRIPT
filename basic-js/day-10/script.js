@@ -30,7 +30,7 @@
               .then((response) => response.json())
               .then((data) => {
                 // Display pokemon sprite on screen
-                showPokemon(this.innerHTML, data.sprites.front_default);
+                showPokemon(this.innerHTML, data);
               });
           });
         });
@@ -52,22 +52,26 @@
     /**
      * Given a name and a url to the pokemon sprite, displays the the pokemon sprite
      * @param {String} name pokemon name
-     * @param {String} link url to pokemon sprite
+     * @param {Object} data object containing pokemon data
      */
-    const showPokemon = (name, link) => {
+    const showPokemon = (name, data) => {
       // Check if there is an existing sprite
-      if (document.querySelectorAll("#poke-info > img").length > 0) {
+      if (document.querySelectorAll("#poke-info > div").length > 0) {
         // Remove any existing sprite
         document.getElementById("poke-info").innerHTML = "";
       }
-      // Create a new "img" element
-      let image = document.createElement("img");
-      // Add given link as the image source
-      image.src = link;
-      // Add alt text, including pokemon name
-      image.alt = `Default front sprite of ${name}`;
-      // Append image to poke-info section
-      document.getElementById("poke-info").appendChild(image);
+      let sprite = data.sprites.front_default;
+      let types = data.types.map((type) => type.type.name);
+      // Create a new "div" element
+      let card = document.createElement("div");
+      // Add elements to card
+      card.innerHTML = `
+      <img src="${sprite}" alt="Default front sprite of ${name}">
+      <h1>${name.toUpperCase()}</h1>
+      <h2>Type(s): ${types.join(", ")}</h2>
+      `;
+      // Append card to poke-info section
+      document.getElementById("poke-info").appendChild(card);
     };
   }
 })();
