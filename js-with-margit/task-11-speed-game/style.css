@@ -5,15 +5,16 @@
 }
 
 body {
-  background: rgb(51, 238, 255);
-  background: linear-gradient(
-      45deg,
-      rgba(51, 238, 255, 1) 0%,
-      rgba(255, 235, 31, 1) 100%
-    )
-    no-repeat fixed;
+  background-color: #aedcea;
   height: 100%;
   font-family: "Press Start 2P", cursive;
+  text-align: center;
+  line-height: 1.8rem;
+}
+
+h1 {
+  color: #ffcb05;
+  text-shadow: -5px 0 #3c5aa6, 0 5px #3c5aa6, 5px 0 #3c5aa6, 0 -5px #3c5aa6;
 }
 
 .container {
@@ -23,7 +24,7 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 2rem auto;
-  height: 90vh;
+  height: 75vh;
   max-height: 900px;
   justify-content: space-around;
 }
@@ -45,24 +46,53 @@ body {
   margin: 1rem;
 }
 
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
 button:focus {
   outline: none;
+}
+.bulbasaur {
+  background-image: url("./images/bulbasaur.png");
+}
+.charmander {
+  background-image: url("./images/charmander.png");
+}
+
+.squirtle {
+  background-image: url("./images/squirtle.png");
+}
+
+.pikachu {
+  background-image: url("./images/pikachu.png");
 }
 
 .active {
   background-color: tomato;
 }
 
+.inactive {
+  background-image: radial-gradient(
+      white 10%,
+      black 11%,
+      black 15%,
+      transparent 16%
+    ),
+    linear-gradient(0deg, white 45%, black 45%, black 55%, red 55%);
+}
+
 #start,
 #stop {
+  grid-area: "a";
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
 
-#start:disabled {
-  border: 2px outset #ddd;
-  background-color: #eee;
-  color: #666;
+#stop {
+  display: none;
 }
 
 #overlay {
@@ -88,6 +118,7 @@ button:focus {
   align-items: center;
   flex-direction: column;
   position: relative;
+  padding: 2%;
 }
 
 h2 {

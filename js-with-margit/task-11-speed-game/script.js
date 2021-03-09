@@ -5,22 +5,31 @@ let finalScore = document.getElementById("final-score");
 let btnClose = document.getElementById("close");
 let btnStart = document.getElementById("start");
 let btnStop = document.getElementById("stop");
-// Requested feature
-let goat = new Audio("https://www.fesliyanstudios.com/play-mp3/6535");
+let audioBg = new Audio("./music/bg-easy.mp3");
+let audioBadEnd = new Audio("./music/bad-end.mp3");
+let audioGoodEnd = new Audio("./music/good-end.mp3");
+let audioGreatEnd = new Audio("./music/great-end.mp3");
 
 function startGame() {
-  let lastActive, active;
-  let score = 0;
+  let lastActive, active, endText;
+  let score = 20;
   let speed = 1000;
   let timer;
+  let counter = 0;
+  // Star background music
+  audioBg.play();
 
-  // Disable start button once game has started
-  btnStart.disabled = true;
+  // Hide start button
+  btnStart.style.display = "none";
+  // Make stop button visible
+  btnStop.style.display = "block";
 
   // Activate first circle
   activateCircle();
 
   function activateCircle() {
+    // End game if counter is more than five, else increment counter
+    counter > 5 ? showGameOver() : counter++;
     // Get random number between 0 and 3
     active = Math.floor(Math.random() * 4);
     if (lastActive === active) {
@@ -31,12 +40,11 @@ function startGame() {
     // If this is not the first time that activateCircle has been called
     if (lastActive != undefined) {
       // Make last circle inactive
-      circles[lastActive].classList.remove("active");
+      circles[lastActive].classList.toggle("inactive");
     }
     // Make new circle active
-    circles[active].classList.add("active");
+    circles[active].classList.toggle("inactive");
     // Update last active
-
     lastActive = active;
 
     // Activate new circle
@@ -53,28 +61,46 @@ function startGame() {
   function checkClicked() {
     // Check that the value of circle is the same as active
     if (this.value == active) {
-      goat.play();
       score++;
+      // Adjust speed to increase difficulty
+      if (speed > 250) speed -= 10;
+      // Reset counter to 0;
+      counter = 0;
       // Update score display
       displayScore.textContent = `${score}`;
     } else {
       // If player clicked the wrong circle, trigger game over
       showGameOver();
     }
-    // Adjust speed to increase difficulty
-    if (speed > 250) speed -= 10;
   }
 
   // Add event listener to stop button, if player click "stop", trigger game over
   btnStop.addEventListener("click", showGameOver);
 
   function showGameOver() {
+    // Stop background music
+    audioBg.pause();
     // Stop timeout
     clearTimeout(timer);
     // Make overlay visible
     overlay.style.visibility = "visible";
+    // Check users score, play ending audio and assign end text
+    switch (true) {
+      case score < 10:
+        audioBadEnd.play();
+        endText = "If you don't SPLASH, you won't evolve.";
+        break;
+      case score > 9 && score < 20:
+        audioGoodEnd.play();
+        endText = "HARDEN for now, things will get better.";
+        break;
+      case score > 19:
+        audioGreatEnd.play();
+        endText = "Never let your EMBER burn out.";
+    }
+
     // Display player's final score
-    finalScore.textContent = `Your final score is ${score}`;
+    finalScore.textContent = `Your final score is ${score}.\n${endText}`;
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
       // Reload page
