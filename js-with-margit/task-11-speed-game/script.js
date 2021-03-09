@@ -9,14 +9,31 @@ let audioBg = new Audio("./music/bg-easy.mp3");
 let audioBadEnd = new Audio("./music/bad-end.mp3");
 let audioGoodEnd = new Audio("./music/good-end.mp3");
 let audioGreatEnd = new Audio("./music/great-end.mp3");
+let audioLvlChange = new Audio("./music/click.mp3");
+let levels = document.querySelectorAll("input[type=radio]");
+
+// Play click sound whenever level is changed
+levels.forEach((level) => {
+  level.addEventListener("change", () => audioLvlChange.play());
+});
 
 function startGame() {
-  let lastActive, active, endText;
-  let score = 20;
-  let speed = 1000;
-  let timer;
+  let lastActive, active, endText, speed, minSpeed, maxSkip, timer;
+  let score = 0;
   let counter = 0;
-  // Star background music
+
+  speed = 1000;
+
+  // Check level setting
+  document.querySelectorAll("input[type=radio]").forEach((level) => {
+    if (level.checked == true) levelSet = level.value;
+  });
+
+  console.log(levelSet);
+
+  // Set speed, minSpeed, maxSkip
+
+  // Start background music
   audioBg.play();
 
   // Hide start button
@@ -100,7 +117,7 @@ function startGame() {
     }
 
     // Display player's final score
-    finalScore.textContent = `Your final score is ${score}.\n${endText}`;
+    finalScore.textContent = `Your final score is ${score}. ${endText}`;
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
       // Reload page

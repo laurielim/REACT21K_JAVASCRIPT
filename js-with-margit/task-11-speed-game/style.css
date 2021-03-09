@@ -24,9 +24,38 @@ h1 {
   max-width: 1200px;
   width: 100%;
   margin: 2rem auto;
-  height: 75vh;
-  max-height: 900px;
+  height: 90vh;
+  max-height: 600px;
   justify-content: space-around;
+}
+
+.user-input {
+  display: inline-block;
+  margin: 0 1rem;
+}
+
+.user-input label {
+  cursor: pointer;
+}
+
+.input-lvl {
+  height: 0;
+  width: 0;
+}
+
+.input-lvl:checked {
+  position: relative;
+}
+
+.input-lvl:checked::after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-left: 12px solid black;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  right: 0;
+  bottom: 0;
 }
 
 .circles {
@@ -44,6 +73,7 @@ h1 {
   background-color: white;
   border: 1px solid black;
   margin: 1rem;
+  cursor: pointer;
 }
 
 .buttons {

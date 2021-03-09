@@ -16,6 +16,39 @@
   <body>
     <div class="container">
       <h1>Speed Game</h1>
+      <form>
+        <div class="user-input">
+          <input
+            type="radio"
+            name="levels"
+            id="lvlOne"
+            class="input-lvl"
+            checked="checked"
+            value="0"
+          />
+          <label for="lvlOne">Level 1</label>
+        </div>
+        <div class="user-input">
+          <input
+            type="radio"
+            name="levels"
+            id="lvlTwo"
+            class="input-lvl"
+            value="1"
+          />
+          <label for="lvlTwo">Level 2</label>
+        </div>
+        <div class="user-input">
+          <input
+            type="radio"
+            name="levels"
+            id="lvlThree"
+            class="input-lvl"
+            value="2"
+          />
+          <label for="lvlThree">Level 3</label>
+        </div>
+      </form>
       <p>Your score is <span id="score">0</span></p>
       <div class="circles">
         <button class="circle bulbasaur inactive" value="0"></button>
