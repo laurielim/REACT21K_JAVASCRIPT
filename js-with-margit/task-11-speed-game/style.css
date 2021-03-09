@@ -7,7 +7,7 @@
 body {
   background-color: #aedcea;
   height: 100%;
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P", "Courier New", Courier, monospace;
   text-align: center;
   line-height: 1.8rem;
 }
@@ -16,7 +16,24 @@ h1 {
   color: #ffcb05;
   text-shadow: -5px 0 #3c5aa6, 0 5px #3c5aa6, 5px 0 #3c5aa6, 0 -5px #3c5aa6;
 }
+.icon {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 2rem;
+  cursor: pointer;
+}
 
+.btn-icon {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-icon-cog {
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-icon-cog:hover {
+  transform: rotate(30deg);
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -119,6 +136,7 @@ button:focus {
   grid-area: "a";
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #stop {

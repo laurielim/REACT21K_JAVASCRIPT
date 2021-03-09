@@ -5,7 +5,9 @@ let finalScore = document.getElementById("final-score");
 let btnClose = document.getElementById("close");
 let btnStart = document.getElementById("start");
 let btnStop = document.getElementById("stop");
-let audioBg = new Audio("./music/bg-easy.mp3");
+let audioBgEasy = new Audio("./music/bg-easy.mp3");
+let audioBgMedium = new Audio("./music/bg-medium.mp3");
+let audioBgHard = new Audio("./music/bg-hard.mp3");
 let audioBadEnd = new Audio("./music/bad-end.mp3");
 let audioGoodEnd = new Audio("./music/good-end.mp3");
 let audioGreatEnd = new Audio("./music/great-end.mp3");
@@ -18,20 +20,47 @@ levels.forEach((level) => {
 });
 
 function startGame() {
-  let lastActive, active, endText, speed, minSpeed, maxSkip, timer;
+  let lastActive,
+    active,
+    endText,
+    speed,
+    minSpeed,
+    maxSkip,
+    speedUp,
+    timer,
+    audioBg;
   let score = 0;
   let counter = 0;
-
-  speed = 1000;
 
   // Check level setting
   document.querySelectorAll("input[type=radio]").forEach((level) => {
     if (level.checked == true) levelSet = level.value;
   });
 
-  console.log(levelSet);
-
-  // Set speed, minSpeed, maxSkip
+  // Set speed, minSpeed, maxSkip, bg music
+  switch (levelSet) {
+    case "0":
+      speed = 1000;
+      minSpeed = 250;
+      maxSkip = 5;
+      speedUp = 10;
+      audioBg = audioBgEasy;
+      break;
+    case "1":
+      speed = 1000;
+      minSpeed = 200;
+      maxSkip = 3;
+      speedUp = 15;
+      audioBg = audioBgMedium;
+      break;
+    case "2":
+      speed = 900;
+      minSpeed = 150;
+      maxSkip = 0;
+      speedUp = 20;
+      audioBg = audioBgHard;
+      break;
+  }
 
   // Start background music
   audioBg.play();
@@ -46,7 +75,7 @@ function startGame() {
 
   function activateCircle() {
     // End game if counter is more than five, else increment counter
-    counter > 5 ? showGameOver() : counter++;
+    counter > maxSkip ? showGameOver() : counter++;
     // Get random number between 0 and 3
     active = Math.floor(Math.random() * 4);
     if (lastActive === active) {
@@ -80,7 +109,8 @@ function startGame() {
     if (this.value == active) {
       score++;
       // Adjust speed to increase difficulty
-      if (speed > 250) speed -= 10;
+      if (speed > minSpeed) speed -= speedUp;
+      console.log(speed);
       // Reset counter to 0;
       counter = 0;
       // Update score display
@@ -121,7 +151,7 @@ function startGame() {
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
       // Reload page
-      window.location.reload();
+      // window.location.reload();
     });
   }
 }
