@@ -174,6 +174,7 @@ btnSoundOn.addEventListener("click", () => {
 
 btnSoundOff.addEventListener("click", () => {
   soundOn = true;
+  if (audioBg) audioBg.play();
   btnSoundOn.style.display = "block";
   btnSoundOff.style.display = "none";
 });
