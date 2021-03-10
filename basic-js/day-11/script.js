@@ -20,7 +20,27 @@
       // Exit function
       return;
     }
+    // Make API call to OpenWeather
+    fetch(
+      `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${config.API_TOKEN}&units=metric`
+    )
+      .then((response) => {
+        // Check if city exist in database
+        if (response.ok) {
+          // Parse JSON
+          return response.json();
+        } else {
+          // Reject fetch
+          return Promise.reject("City not Found. Please check spelling.");
+        }
+      })
+      // retrieve temperature data and pass it into showTemperature fn
+      .then((data) => showTemperature(data.main.temp))
+      // Inform user that city wasn't found
+      .catch((err) => alert(err));
+  }
 
-    console.log(cityName);
+  function showTemperature(temp) {
+    // To do...
   }
 })();
