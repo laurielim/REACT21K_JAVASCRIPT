@@ -48,6 +48,10 @@ h1 {
   border: none;
 }
 
+#soundOn {
+  display: none;
+}
+
 #soundOff {
   display: none;
 }

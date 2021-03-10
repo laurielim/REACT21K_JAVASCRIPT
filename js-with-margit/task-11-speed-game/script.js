@@ -17,15 +17,27 @@ let audioLvlChange = new Audio("./music/click.mp3");
 let levels = document.querySelectorAll("input[type=radio]");
 
 let sessionStorage = window.sessionStorage;
-
+// Get highscore from session storage
 let highscore = sessionStorage.getItem("highscore")
   ? parseInt(sessionStorage.getItem("highscore"))
   : 0;
 
 // Display highscore
 displayHighscore.textContent = highscore;
+// Get sound option from session storage, unless sound is set to false, set sound on
+let soundOn = sessionStorage.getItem("sound") == "false" ? false : true;
 
-let soundOn = true;
+let btnSoundOn = document.getElementById("soundOn");
+let btnSoundOff = document.getElementById("soundOff");
+
+// Display volume icon matching soundOn
+if (soundOn) {
+  // Show sound on btn
+  btnSoundOn.style.display = "block";
+} else {
+  // Show sound off btn
+  btnSoundOff.style.display = "block";
+}
 
 // Play click sound whenever level is changed if sound is on
 levels.forEach((level) => {
@@ -117,7 +129,6 @@ function startGame() {
       score++;
       // Adjust speed to increase difficulty
       if (speed > minSpeed) speed -= speedUp;
-      console.log(speed);
       // Reset counter to 0;
       counter = 0;
       // Update score display
@@ -161,6 +172,7 @@ function startGame() {
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
       // Store sound setting
+      sessionStorage.setItem("sound", `${soundOn}`);
       // Store score if it's greater than current highscore
       if (score > highscore) sessionStorage.setItem("highscore", `${score}`);
       // Reload page
@@ -178,9 +190,6 @@ document
   .addEventListener("click", () =>
     document.querySelector(".levels-setting").classList.toggle("responsive")
   );
-
-let btnSoundOn = document.getElementById("soundOn");
-let btnSoundOff = document.getElementById("soundOff");
 
 // If sound is on...
 btnSoundOn.addEventListener("click", () => {
