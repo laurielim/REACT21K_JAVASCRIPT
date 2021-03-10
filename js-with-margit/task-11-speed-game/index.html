@@ -18,7 +18,13 @@
     <div class="container">
       <h1>Speed Game</h1>
       <div class="settings">
-        <button class="btn-icon btn-icon-cog">
+        <button class="btn-icon" id="soundOn">
+          <i class="icon icon-volume-high"></i>
+        </button>
+        <button class="btn-icon" id="soundOff">
+          <i class="icon icon-volume-off"></i>
+        </button>
+        <button class="btn-icon btn-icon-cog" id="btnSettings">
           <i class="icon icon-cog-outline"></i>
         </button>
         <form class="levels-setting">
@@ -54,12 +60,6 @@
             <label for="lvlThree">Level 3</label>
           </div>
         </form>
-        <button class="btn-icon">
-          <i class="icon icon-volume-high"></i>
-        </button>
-        <button class="btn-icon">
-          <i class="icon icon-volume-off"></i>
-        </button>
       </div>
       <div class="scores">
         <p>High Score: <span id="highscore">0</span></p>

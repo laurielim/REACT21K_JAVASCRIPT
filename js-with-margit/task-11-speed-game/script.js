@@ -5,6 +5,8 @@ let finalScore = document.getElementById("final-score");
 let btnClose = document.getElementById("close");
 let btnStart = document.getElementById("start");
 let btnStop = document.getElementById("stop");
+let audioBg, audioEnd;
+let soundOn = "true";
 let audioBgEasy = new Audio("./music/bg-easy.mp3");
 let audioBgMedium = new Audio("./music/bg-medium.mp3");
 let audioBgHard = new Audio("./music/bg-hard.mp3");
@@ -20,15 +22,7 @@ levels.forEach((level) => {
 });
 
 function startGame() {
-  let lastActive,
-    active,
-    endText,
-    speed,
-    minSpeed,
-    maxSkip,
-    speedUp,
-    timer,
-    audioBg;
+  let lastActive, active, endText, speed, minSpeed, maxSkip, speedUp, timer;
   let score = 0;
   let counter = 0;
 
@@ -52,14 +46,6 @@ function startGame() {
       maxSkip = 3;
       speedUp = 15;
       audioBg = audioBgMedium;
-      let((i = 10));
-      while (i) {
-        let animatedIntro = setInterval(() => {
-          circles;
-          circles[active].classList.toggle("inactive");
-        }, 500);
-      }
-
       break;
     case "2":
       speed = 900;
@@ -70,8 +56,8 @@ function startGame() {
       break;
   }
 
-  // Start background music
-  audioBg.play();
+  // Start background music if sound is on
+  if (soundOn) audioBg.play();
 
   // Hide start button
   btnStart.style.display = "none";
@@ -139,20 +125,23 @@ function startGame() {
     clearTimeout(timer);
     // Make overlay visible
     overlay.style.visibility = "visible";
-    // Check users score, play ending audio and assign end text
+    // Check users score, set ending audio and assign end text
     switch (true) {
       case score < 10:
-        audioBadEnd.play();
+        audioEnd = audioBadEnd;
         endText = "If you don't SPLASH, you won't evolve.";
         break;
       case score > 9 && score < 20:
-        audioGoodEnd.play();
+        audioEnd = audioGoodEnd;
         endText = "HARDEN for now, things will get better.";
         break;
       case score > 19:
-        audioGreatEnd.play();
+        audioEnd = audioGreatEnd;
         endText = "Never let your EMBER burn out.";
     }
+
+    // Play ending audio if sound is on
+    if (soundOn) audioEnd.play();
 
     // Display player's final score
     finalScore.textContent = `Your final score is ${score}. ${endText}`;
@@ -166,5 +155,27 @@ function startGame() {
 
 // Add event listener to start button
 btnStart.addEventListener("click", startGame);
+
+document
+  .getElementById("btnSettings")
+  .addEventListener("click", () =>
+    document.querySelector(".levels-setting").classList.toggle("responsive")
+  );
+
+let btnSoundOn = document.getElementById("soundOn");
+let btnSoundOff = document.getElementById("soundOff");
+
+btnSoundOn.addEventListener("click", () => {
+  soundOn = false;
+  if (audioBg) audioBg.pause();
+  btnSoundOn.style.display = "none";
+  btnSoundOff.style.display = "block";
+});
+
+btnSoundOff.addEventListener("click", () => {
+  soundOn = true;
+  btnSoundOn.style.display = "block";
+  btnSoundOff.style.display = "none";
+});
 
 // Store highscore = https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
