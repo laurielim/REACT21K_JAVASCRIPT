@@ -30,17 +30,22 @@
           // Parse JSON
           return response.json();
         } else {
-          // Reject fetch
+          // Reject fetch promise if no city found
           return Promise.reject("City not Found. Please check spelling.");
         }
       })
       // retrieve temperature data and pass it into showTemperature fn
-      .then((data) => showTemperature(data.main.temp))
+      .then((data) => showTemperature(data.main.temp, cityName))
       // Inform user that city wasn't found
       .catch((err) => alert(err));
   }
 
-  function showTemperature(temp) {
-    // To do...
+  function showTemperature(temp, cityName) {
+    // Round temperature number
+    temp = Math.ceil(temp);
+    // Update text inside result
+    document.getElementById(
+      "result"
+    ).textContent = `It is currently ${temp}°C in ${cityName}`;
   }
 })();
