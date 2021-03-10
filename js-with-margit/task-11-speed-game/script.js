@@ -1,12 +1,12 @@
 let circles = document.querySelectorAll(".circle");
 let displayScore = document.getElementById("score");
+let displayHighscore = document.getElementById("highscore");
 let overlay = document.getElementById("overlay");
 let finalScore = document.getElementById("final-score");
 let btnClose = document.getElementById("close");
 let btnStart = document.getElementById("start");
 let btnStop = document.getElementById("stop");
 let audioBg, audioEnd;
-let soundOn = "true";
 let audioBgEasy = new Audio("./music/bg-easy.mp3");
 let audioBgMedium = new Audio("./music/bg-medium.mp3");
 let audioBgHard = new Audio("./music/bg-hard.mp3");
@@ -16,9 +16,22 @@ let audioGreatEnd = new Audio("./music/great-end.mp3");
 let audioLvlChange = new Audio("./music/click.mp3");
 let levels = document.querySelectorAll("input[type=radio]");
 
-// Play click sound whenever level is changed
+let sessionStorage = window.sessionStorage;
+
+let highscore = sessionStorage.getItem("highscore")
+  ? parseInt(sessionStorage.getItem("highscore"))
+  : 0;
+
+// Display highscore
+displayHighscore.textContent = highscore;
+
+let soundOn = true;
+
+// Play click sound whenever level is changed if sound is on
 levels.forEach((level) => {
-  level.addEventListener("change", () => audioLvlChange.play());
+  level.addEventListener("change", () => {
+    if (soundOn) audioLvlChange.play();
+  });
 });
 
 function startGame() {
@@ -147,6 +160,9 @@ function startGame() {
     finalScore.textContent = `Your final score is ${score}. ${endText}`;
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
+      // Store sound setting
+      // Store score if it's greater than current highscore
+      if (score > highscore) sessionStorage.setItem("highscore", `${score}`);
       // Reload page
       window.location.reload();
     });
@@ -156,6 +172,7 @@ function startGame() {
 // Add event listener to start button
 btnStart.addEventListener("click", startGame);
 
+// Toggle levels setting on click
 document
   .getElementById("btnSettings")
   .addEventListener("click", () =>
@@ -165,18 +182,25 @@ document
 let btnSoundOn = document.getElementById("soundOn");
 let btnSoundOff = document.getElementById("soundOff");
 
+// If sound is on...
 btnSoundOn.addEventListener("click", () => {
+  // Set sound on to false
   soundOn = false;
+  // Pause bg music if playing
   if (audioBg) audioBg.pause();
+  // Hide sound on btn
   btnSoundOn.style.display = "none";
+  // Show sound off btn
   btnSoundOff.style.display = "block";
 });
 
+// If sound if off...
 btnSoundOff.addEventListener("click", () => {
   soundOn = true;
+  // Resume bg music if paused
   if (audioBg) audioBg.play();
+  // Show sound on btn
   btnSoundOn.style.display = "block";
+  // Hide sound off btn
   btnSoundOff.style.display = "none";
 });
-
-// Store highscore = https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
