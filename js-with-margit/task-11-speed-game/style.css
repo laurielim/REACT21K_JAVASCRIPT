@@ -12,9 +12,27 @@ body {
   line-height: 1.8rem;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem auto;
+  height: 90vh;
+  max-height: 600px;
+  justify-content: space-around;
+}
+
 h1 {
   color: #ffcb05;
   text-shadow: -5px 0 #3c5aa6, 0 5px #3c5aa6, 5px 0 #3c5aa6, 0 -5px #3c5aa6;
+}
+
+/**************** Setting Buttons ****************/
+
+.settings {
+  display: flex;
 }
 .icon {
   font-family: "Courier New", Courier, monospace;
@@ -29,21 +47,11 @@ h1 {
 
 .btn-icon-cog {
   transition: transform 0.2s ease-in-out;
+  display: none;
 }
 
 .btn-icon-cog:hover {
   transform: rotate(30deg);
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  margin: 2rem auto;
-  height: 90vh;
-  max-height: 600px;
-  justify-content: space-around;
 }
 
 .user-input {
@@ -74,6 +82,8 @@ h1 {
   right: 0;
   bottom: 0;
 }
+
+/**************** Game Buttons ****************/
 
 .circles {
   width: 100%;
@@ -193,5 +203,13 @@ h2 {
 @media (max-width: 576px) {
   html {
     font-size: 14px;
+  }
+
+  .btn-icon-cog {
+    display: block;
+  }
+
+  .levels-setting {
+    display: none;
   }
 }

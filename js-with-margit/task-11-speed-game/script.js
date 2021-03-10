@@ -52,6 +52,14 @@ function startGame() {
       maxSkip = 3;
       speedUp = 15;
       audioBg = audioBgMedium;
+      let((i = 10));
+      while (i) {
+        let animatedIntro = setInterval(() => {
+          circles;
+          circles[active].classList.toggle("inactive");
+        }, 500);
+      }
+
       break;
     case "2":
       speed = 900;
@@ -151,10 +159,12 @@ function startGame() {
     // Add event listener to close button
     btnClose.addEventListener("click", () => {
       // Reload page
-      // window.location.reload();
+      window.location.reload();
     });
   }
 }
 
 // Add event listener to start button
 btnStart.addEventListener("click", startGame);
+
+// Store highscore = https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
