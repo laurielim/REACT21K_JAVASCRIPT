@@ -1,4 +1,4 @@
-# Project title
+# Intro to JavaScript
 
 This repo contains the tasks and practice exercises I did for Intro to JavaScript as part of the Full Stack Web Development Program at [Business College Helsinki](https://en.bc.fi/qualifications/full-stack-web-developer-program/).
 
