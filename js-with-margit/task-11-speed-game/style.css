@@ -48,10 +48,7 @@ h1 {
   border: none;
 }
 
-#soundOn {
-  display: none;
-}
-
+#soundOn,
 #soundOff {
   display: none;
 }
@@ -163,6 +160,8 @@ button:focus {
 #stop {
   display: none;
 }
+
+/**************** Game Over Overlay ****************/
 
 #overlay {
   background-color: rgba(0, 0, 0, 0.5);

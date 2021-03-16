@@ -13,17 +13,16 @@ let audioBgHard = new Audio("./music/bg-hard.mp3");
 let audioBadEnd = new Audio("./music/bad-end.mp3");
 let audioGoodEnd = new Audio("./music/good-end.mp3");
 let audioGreatEnd = new Audio("./music/great-end.mp3");
-let audioLvlChange = new Audio("./music/click.mp3");
-let levels = document.querySelectorAll("input[type=radio]");
+let audioClick = new Audio("./music/click.mp3");
 
 let sessionStorage = window.sessionStorage;
 // Get highscore from session storage
 let highscore = sessionStorage.getItem("highscore")
   ? parseInt(sessionStorage.getItem("highscore"))
   : 0;
-
 // Display highscore
 displayHighscore.textContent = highscore;
+
 // Get sound option from session storage, unless sound is set to false, set sound on
 let soundOn = sessionStorage.getItem("sound") == "false" ? false : true;
 
@@ -39,10 +38,36 @@ if (soundOn) {
   btnSoundOff.style.display = "block";
 }
 
+// If sound is on...
+btnSoundOn.addEventListener("click", () => {
+  // Set sound on to false
+  soundOn = false;
+  // Pause bg music if playing
+  if (audioBg) audioBg.pause();
+  // Hide sound on btn
+  btnSoundOn.style.display = "none";
+  // Show sound off btn
+  btnSoundOff.style.display = "block";
+});
+
+// If sound if off...
+btnSoundOff.addEventListener("click", () => {
+  soundOn = true;
+  // Resume bg music if paused
+  let audioClick = new Audio("./music/click.mp3");
+  audioBg ? audioBg.play() : audioClick.play();
+  // Show sound on btn
+  btnSoundOn.style.display = "block";
+  // Hide sound off btn
+  btnSoundOff.style.display = "none";
+});
+
+let levels = document.querySelectorAll("input[type=radio]");
+
 // Play click sound whenever level is changed if sound is on
 levels.forEach((level) => {
   level.addEventListener("change", () => {
-    if (soundOn) audioLvlChange.play();
+    if (soundOn) audioClick.play();
   });
 });
 
@@ -190,26 +215,3 @@ document
   .addEventListener("click", () =>
     document.querySelector(".levels-setting").classList.toggle("responsive")
   );
-
-// If sound is on...
-btnSoundOn.addEventListener("click", () => {
-  // Set sound on to false
-  soundOn = false;
-  // Pause bg music if playing
-  if (audioBg) audioBg.pause();
-  // Hide sound on btn
-  btnSoundOn.style.display = "none";
-  // Show sound off btn
-  btnSoundOff.style.display = "block";
-});
-
-// If sound if off...
-btnSoundOff.addEventListener("click", () => {
-  soundOn = true;
-  // Resume bg music if paused
-  if (audioBg) audioBg.play();
-  // Show sound on btn
-  btnSoundOn.style.display = "block";
-  // Hide sound off btn
-  btnSoundOff.style.display = "none";
-});
