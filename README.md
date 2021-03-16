@@ -25,10 +25,10 @@ Built with:
 
 Margit Tennosaar
 
-- GitHub @margittennosaar
+- [GitHub](https://github.com/margittennosaar) @margittennosaar
 - [LinkedIn](https://www.linkedin.com/in/margittennosaar/)
 
 Hoang Pham
 
-- GitHub @phamt6
+- [GitHub](https://github.com/phamt6) @phamt6
 - [LinkedIn](https://www.linkedin.com/in/tienhoangpham/)
