@@ -10,25 +10,20 @@ Built with:
 - JS
 - CSS
 
-## Setup and usage
-
-- Live page for [How many days until...?](https://laurielim.github.io/days-calculator/), a days counter and countdown timer.
-- Live page for [Speed Game](https://laurielim.github.io/speed-game/), a simple game where the player must click on as many active circle as possible while the game gets faster after every click.
-
 ## Sources
 
 - [GitHub Guides - masterin markdown](https://guides.github.com/features/mastering-markdown/)
 - [Make a README](https://www.makeareadme.com/)
 - Source for helper functions are included in the comments where they are used.
 
-## Authors and acknowledgment
+## Acknowledgment
 
-Margit Tennosaar
+Mentor: Margit Tennosaar
 
 - [GitHub](https://github.com/margittennosaar) @margittennosaar
 - [LinkedIn](https://www.linkedin.com/in/margittennosaar/)
 
-Hoang Pham
+Mentor: Hoang Pham
 
 - [GitHub](https://github.com/phamt6) @phamt6
 - [LinkedIn](https://www.linkedin.com/in/tienhoangpham/)
